@@ -5,7 +5,7 @@
 4. 2372040 - Kaisar Naufal Naratama
 
 # Alchemist's Sort
-* Algoritma: Menggunakan **Merge Sort** untuk mengurutkan data.
+* Algoritma: Menggunakan **Bubble Sort** untuk mengurutkan data.
 * Visualisasi: Menunjukkan botol ramuan yang diurutkan di atas meja laboratorium.
 
 Teknologi yang Digunakan:
