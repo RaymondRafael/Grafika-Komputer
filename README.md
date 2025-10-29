@@ -4,9 +4,9 @@
 3. 2372034 - Exalt Winata Gunawan
 4. 2372040 - Kaisar Naufal Naratama
 
-# Alchemist's Sort
+# Planets's Sort
 * Algoritma: Menggunakan **Bubble Sort** untuk mengurutkan data.
-* Visualisasi: Menunjukkan botol ramuan yang diurutkan di atas meja laboratorium.
+* Visualisasi: Menunjukkan planet yang diurutkan di orbit tata surya.
 
 Teknologi yang Digunakan:
 1. HTML
