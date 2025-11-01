@@ -143,4 +143,27 @@ window.onload = function () {
         shuffleArray(arrayToSort);
         drawArray(arrayToSort);
     }
+
+    function createLegend() {
+        const legendContainer = document.getElementById('legendContainer');
+        legendContainer.innerHTML = ''; 
+
+        const sortedData = PLANET_DATA.map(p => ({ ...p }));
+
+        sortedData.forEach(planet => {
+            const item = document.createElement('div');
+            item.className = 'legend-item';
+
+            const colorBox = document.createElement('div');
+            colorBox.className = 'legend-color';
+            colorBox.style.backgroundColor = `rgb(${planet.color.r}, ${planet.color.g}, ${planet.color.b})`;
+
+            const text = document.createElement('span');
+            text.textContent = planet.name;
+
+            item.appendChild(colorBox);
+            item.appendChild(text);
+            legendContainer.appendChild(item);
+        });
+    }
 }
