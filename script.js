@@ -136,4 +136,11 @@ window.onload = function () {
             [array[i], array[j]] = [array[j], array[i]];
         }
     }
+
+    function createPlanets() {
+        if (isSorting) return;
+        arrayToSort = PLANET_DATA.map(p => ({ ...p }));
+        shuffleArray(arrayToSort);
+        drawArray(arrayToSort);
+    }
 }
