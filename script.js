@@ -196,4 +196,21 @@ window.onload = function () {
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+
+    async function startSort() {
+        if (isSorting || arrayToSort.length === 0) return;
+        isSorting = true;
+        
+        await bubbleSort(arrayToSort); 
+
+        let finalHighlights = {};
+        for (let i = 0; i < arrayToSort.length; i++) {
+            finalHighlights[i] = 'swap';
+        }
+        drawArray(arrayToSort, finalHighlights);
+        await sleep(500); 
+
+        drawArray(arrayToSort, {});
+        isSorting = false;
+    }
 }
