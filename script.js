@@ -192,4 +192,8 @@ window.onload = function () {
 
         ctx.putImageData(imageData, 0, 0);
     }
+    
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 }
