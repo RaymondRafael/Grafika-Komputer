@@ -166,4 +166,30 @@ window.onload = function () {
             legendContainer.appendChild(item);
         });
     }
+
+    function drawArray(arr, highlightIndices = {}) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        const n = arr.length;
+        const y_center = canvas.height / 2;
+        const maxVal = Math.max(200, ...arr.map(p => p.value)); 
+        const availableWidth = canvas.width - 100;
+        const spacing = availableWidth / n;
+        const maxRadius = (spacing / 2) * 0.8; 
+
+        for (let i = 0; i < n; i++) {
+            const planetRadius = (arr[i].value / maxVal) * maxRadius + 5; 
+            const x_center = 50 + (i * spacing) + (spacing / 2);
+            
+            const color = arr[i].color;
+
+            drawPlanet(imageData, Math.floor(x_center), y_center, planetRadius, OUTLINE_COLOR, color);
+        }
+        
+        dda_line(imageData, 0, y_center, canvas.width, y_center, ORBIT_COLOR.r, ORBIT_COLOR.g, ORBIT_COLOR.b);
+
+        ctx.putImageData(imageData, 0, 0);
+    }
 }
