@@ -183,7 +183,13 @@ window.onload = function () {
             const planetRadius = (arr[i].value / maxVal) * maxRadius + 5; 
             const x_center = 50 + (i * spacing) + (spacing / 2);
             
-            const color = arr[i].color;
+            let color = arr[i].color;
+
+            if (highlightIndices[i] === 'swap') {
+                color = PlanetColors.SWAP;
+            } else if (highlightIndices[i] === 'compare') {
+                color = PlanetColors.COMPARE;
+            }
 
             drawPlanet(imageData, Math.floor(x_center), y_center, planetRadius, OUTLINE_COLOR, color);
         }
