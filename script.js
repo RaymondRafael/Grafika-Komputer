@@ -219,4 +219,48 @@ window.onload = function () {
         drawArray(arrayToSort, {});
         isSorting = false;
     }
+
+    async function bubbleSort(arr) {
+        let n = arr.length;
+        const animationSpeed = 150; 
+
+        for (let i = 0; i < n - 1; i++) {
+            let swapped = false;
+            
+            for (let j = 0; j < n - i - 1; j++) {
+                
+                let highlights = {};
+                highlights[j] = 'compare';
+                highlights[j + 1] = 'compare';
+                
+                for (let k = n - i; k < n; k++) {
+                    highlights[k] = 'swap'; 
+                }
+                
+                drawArray(arr, highlights);
+                await sleep(animationSpeed); 
+
+        
+                if (arr[j].value > arr[j + 1].value) {
+                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    swapped = true;
+                    
+                    let swapHighlights = {};
+                    swapHighlights[j] = 'swap';
+                    swapHighlights[j + 1] = 'swap';
+                    
+                    for (let k = n - i; k < n; k++) {
+                        swapHighlights[k] = 'swap';
+                    }
+                    
+                    drawArray(arr, swapHighlights);
+                    await sleep(animationSpeed); 
+                }
+            }
+            
+            if (!swapped) {
+                break;
+            }
+        }
+    }
 }
