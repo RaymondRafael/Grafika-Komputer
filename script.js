@@ -31,19 +31,14 @@ window.onload = function () {
     document.getElementById('btnSort').onclick = mulaiUrut;
 
 
-    function gambar_titik(imageData, x, y, r, g, b) {
-        x = Math.floor(x);
-        y = Math.floor(y);
-
-        if (x < 0 || x >= imageData.width || y < 0 || y >= imageData.height) {
-            return;
+    function gambar_titik(imageDataA, x, y, r, g, b) {
+        var index = 4 * (Math.ceil(x) + (Math.ceil(y) * cnv.width));
+        if (index >= 0 && index < imageDataA.data.length) {
+            imageDataA.data[index] = r;
+            imageDataA.data[index + 1] = g;
+            imageDataA.data[index + 2] = b;
+            imageDataA.data[index + 3] = 255;
         }
-
-        var index = 4 * (x + (y * cnv.width));
-        imageData.data[index] = r;
-        imageData.data[index + 1] = g;
-        imageData.data[index + 2] = b;
-        imageData.data[index + 3] = 255;
     }
 
 
@@ -84,8 +79,8 @@ window.onload = function () {
 
 
     function lingkaranPolar(imageData, xc, yc, radius, r, g, b) {
-        const step = 0.5 / radius;
-        for (var theta = 0; theta < Math.PI * 2; theta += step) {
+        const langkah = 0.5 / radius;
+        for (var theta = 0; theta < Math.PI * 2; theta += langkah) {
             var x = xc + (radius * Math.cos(theta));
             var y = yc + (radius * Math.sin(theta));
             gambar_titik(imageData, x, y, r, g, b);
