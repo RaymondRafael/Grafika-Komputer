@@ -79,8 +79,7 @@ window.onload = function () {
 
 
     function lingkaranPolar(imageData, xc, yc, radius, r, g, b) {
-        const langkah = 0.5 / radius;
-        for (var theta = 0; theta < Math.PI * 2; theta += langkah) {
+        for (var theta = 0; theta < Math.PI * 2; theta += (0.5 / radius)) {
             var x = xc + (radius * Math.cos(theta));
             var y = yc + (radius * Math.sin(theta));
             gambar_titik(imageData, x, y, r, g, b);
@@ -89,17 +88,13 @@ window.onload = function () {
 
 
     function floodFillStack(imageData, cnv, x, y, toFlood, color) {
-        var tumpukan = [];
-        tumpukan.push({ x: x, y: y });
+        var stackTumpukan = [];
+        stackTumpukan.push({ x: x, y: y });
 
-        while (tumpukan.length > 0) {
-            var titikS = tumpukan.pop();
+        while (stackTumpukan.length > 0) {
+            var titikS = stackTumpukan.pop();
 
-            if (titikS.x < 0 || titikS.x >= cnv.width || titikS.y < 0 || titikS.y >= cnv.height) {
-                continue;
-            }
-
-            var indexS = 4 * (titikS.x + (titikS.y * cnv.width))
+            var indexS = 4 * (Math.round(titikS.x) + (Math.round(titikS.y) * cnv.width))
             var r1 = imageData.data[indexS];
             var g1 = imageData.data[indexS + 1];
             var b1 = imageData.data[indexS + 2];
@@ -110,10 +105,10 @@ window.onload = function () {
                 imageData.data[indexS + 2] = color.b;
                 imageData.data[indexS + 3] = 255;
 
-                tumpukan.push({ x: titikS.x + 1, y: titikS.y })
-                tumpukan.push({ x: titikS.x, y: titikS.y + 1 })
-                tumpukan.push({ x: titikS.x - 1, y: titikS.y })
-                tumpukan.push({ x: titikS.x, y: titikS.y - 1 })
+                stackTumpukan.push({ x: titikS.x + 1, y: titikS.y })
+                stackTumpukan.push({ x: titikS.x, y: titikS.y + 1 })
+                stackTumpukan.push({ x: titikS.x - 1, y: titikS.y })
+                stackTumpukan.push({ x: titikS.x, y: titikS.y - 1 })
             }
         }
     }
